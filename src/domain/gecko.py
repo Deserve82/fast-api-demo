@@ -1,5 +1,6 @@
+import datetime
+
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
-from sqlalchemy.orm import relationship
 
 from src.infra.database import Base
 
@@ -12,5 +13,4 @@ class Gecko(Base):
     name = Column(String, nullable=False)
     price = Column(Integer, nullable=False)
     owner_id = Column(Integer, ForeignKey("user.id"))
-    owner = relationship("User")
-    create_date = Column(DateTime, nullable=False)
+    create_date = Column(DateTime, default=datetime.datetime.utcnow)
